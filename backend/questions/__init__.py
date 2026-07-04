@@ -6,4 +6,4 @@
 # %bf% means boyfriend/girlfriend
 # %sp% husband/wife/spouse
 
-# todo: look for inconsistencies in style overall
+# todo: look for inconsistencies in style overall, avoid hard vocab, make imagination less abstract
