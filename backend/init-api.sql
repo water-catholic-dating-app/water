@@ -286,7 +286,6 @@ CREATE TABLE IF NOT EXISTS person (
     smoking_id SMALLINT REFERENCES yes_no_optional(id) NOT NULL DEFAULT 1,
     drinking_id SMALLINT REFERENCES frequency(id) NOT NULL DEFAULT 1,
     drugs_id SMALLINT REFERENCES yes_no_optional(id) NOT NULL DEFAULT 1,
-    long_distance_id SMALLINT REFERENCES yes_no_optional(id) NOT NULL DEFAULT 1,
     relationship_status_id SMALLINT REFERENCES relationship_status(id) NOT NULL DEFAULT 1,
     has_kids_id SMALLINT REFERENCES yes_no_optional(id) NOT NULL DEFAULT 1,
     wants_kids_id SMALLINT REFERENCES yes_no_maybe(id) NOT NULL DEFAULT 1,
@@ -714,12 +713,6 @@ CREATE TABLE IF NOT EXISTS search_preference_drugs (
     person_id INT NOT NULL REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
     drugs_id SMALLINT REFERENCES yes_no_optional(id) ON DELETE CASCADE,
     PRIMARY KEY (person_id, drugs_id)
-);
-
-CREATE TABLE IF NOT EXISTS search_preference_long_distance (
-    person_id INT NOT NULL REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    long_distance_id SMALLINT REFERENCES yes_no_optional(id) ON DELETE CASCADE,
-    PRIMARY KEY (person_id, long_distance_id)
 );
 
 CREATE TABLE IF NOT EXISTS search_preference_relationship_status (
