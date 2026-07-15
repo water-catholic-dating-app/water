@@ -210,12 +210,6 @@ CREATE TABLE IF NOT EXISTS relationship_status (
     UNIQUE (name)
 );
 
-CREATE TABLE IF NOT EXISTS religion (
-    id SMALLSERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    UNIQUE (name)
-);
-
 CREATE TABLE IF NOT EXISTS unit (
     id SMALLSERIAL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -282,7 +276,6 @@ CREATE TABLE IF NOT EXISTS person (
     relationship_status_id SMALLINT REFERENCES relationship_status(id) NOT NULL DEFAULT 1,
     has_kids_id SMALLINT REFERENCES yes_no_optional(id) NOT NULL DEFAULT 1,
     wants_kids_id SMALLINT REFERENCES yes_no_maybe(id) NOT NULL DEFAULT 1,
-    religion_id SMALLINT REFERENCES religion(id) NOT NULL DEFAULT 1,
 
     -- Theme
     title_color TEXT NOT NULL DEFAULT '#000000',
@@ -724,12 +717,6 @@ CREATE TABLE IF NOT EXISTS search_preference_wants_kids (
     PRIMARY KEY (person_id, wants_kids_id)
 );
 
-CREATE TABLE IF NOT EXISTS search_preference_religion (
-    person_id INT NOT NULL REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    religion_id SMALLINT REFERENCES religion(id) ON DELETE CASCADE,
-    PRIMARY KEY (person_id, religion_id)
-);
-
 CREATE TABLE IF NOT EXISTS search_preference_club (
     person_id INT NOT NULL REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
     club_name TEXT REFERENCES club(name) ON DELETE CASCADE,
@@ -971,18 +958,6 @@ INSERT INTO relationship_status (name) VALUES ('Married') ON CONFLICT (name) DO 
 INSERT INTO relationship_status (name) VALUES ('Divorced') ON CONFLICT (name) DO NOTHING;
 INSERT INTO relationship_status (name) VALUES ('Widowed') ON CONFLICT (name) DO NOTHING;
 INSERT INTO relationship_status (name) VALUES ('Other') ON CONFLICT (name) DO NOTHING;
-
-SELECT setval('religion_id_seq', (SELECT COALESCE(MAX(id), 0) + 1 FROM religion), FALSE);
-INSERT INTO religion (name) VALUES ('Unanswered') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Agnostic') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Atheist') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Buddhist') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Christian') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Hindu') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Jewish') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Muslim') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Zoroastrian') ON CONFLICT (name) DO NOTHING;
-INSERT INTO religion (name) VALUES ('Other') ON CONFLICT (name) DO NOTHING;
 
 SELECT setval('unit_id_seq', (SELECT COALESCE(MAX(id), 0) + 1 FROM unit), FALSE);
 INSERT INTO unit (name) VALUES ('Imperial') ON CONFLICT (name) DO NOTHING;
