@@ -288,7 +288,6 @@ CREATE TABLE IF NOT EXISTS person (
     relationship_status_id SMALLINT REFERENCES relationship_status(id) NOT NULL DEFAULT 1,
     has_kids_id SMALLINT REFERENCES yes_no_optional(id) NOT NULL DEFAULT 1,
     wants_kids_id SMALLINT REFERENCES yes_no_maybe(id) NOT NULL DEFAULT 1,
-    exercise_id SMALLINT REFERENCES frequency(id) NOT NULL DEFAULT 1,
     religion_id SMALLINT REFERENCES religion(id) NOT NULL DEFAULT 1,
     star_sign_id SMALLINT REFERENCES star_sign(id) NOT NULL DEFAULT 1,
 
@@ -730,12 +729,6 @@ CREATE TABLE IF NOT EXISTS search_preference_wants_kids (
     person_id INT NOT NULL REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
     wants_kids_id SMALLINT REFERENCES yes_no_maybe(id) ON DELETE CASCADE,
     PRIMARY KEY (person_id, wants_kids_id)
-);
-
-CREATE TABLE IF NOT EXISTS search_preference_exercise (
-    person_id INT NOT NULL REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    exercise_id SMALLINT REFERENCES frequency(id) ON DELETE CASCADE,
-    PRIMARY KEY (person_id, exercise_id)
 );
 
 CREATE TABLE IF NOT EXISTS search_preference_religion (
