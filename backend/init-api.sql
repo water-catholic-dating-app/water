@@ -280,7 +280,6 @@ CREATE TABLE IF NOT EXISTS person (
     -- Basics
     ethnicity_id SMALLINT REFERENCES ethnicity(id) NOT NULL DEFAULT 1,
     occupation TEXT,
-    education TEXT,
     height_cm SMALLINT,
     looking_for_id SMALLINT REFERENCES looking_for(id) NOT NULL DEFAULT 1,
     smoking_id SMALLINT REFERENCES yes_no_optional(id) NOT NULL DEFAULT 1,
