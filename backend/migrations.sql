@@ -8,6 +8,10 @@
 -- fresh database is created from (this file only reaches existing databases).
 -- init-api.sql is the source of truth for the current schema; migrations.sql
 -- carries the same change to already-created databases.
+--
+-- Note for Water: This file doesn't contain all Water-specific modifications.
+-- Before the first public deployment of Water, changes are only made in
+-- init-api.sql, not in migrations.sql.
 
 -- Can run in a transaction block since Postgres 12, though later statements
 -- in the same transaction can't use the new value.
