@@ -1,4 +1,4 @@
-const appStoreBadge = require('../../../assets/app-store-badges/download-on-the-app-store.png');
+//const appStoreBadge = require('../../../assets/app-store-badges/download-on-the-app-store.png');
 
 const AppStoreBadges = () => {
   return (
@@ -8,7 +8,7 @@ const AppStoreBadges = () => {
         flexDirection: 'row',
       }}
     >
-      {!/android/i.test(window.navigator.userAgent) &&
+      {/*!/android/i.test(window.navigator.userAgent) &&
         <a
           target="_blank"
           href="https://apps.apple.com/us/app/duolicious-dating-app/id6499066647"
@@ -24,9 +24,9 @@ const AppStoreBadges = () => {
             }}
           />
         </a>
-      }
+      */}
 
-      {!/iphone|ipod/i.test(window.navigator.userAgent) &&
+      {/*!/iphone|ipod/i.test(window.navigator.userAgent) &&
         <a
           target="_blank"
           href="https://play.google.com/store/apps/details?id=app.duolicious&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
@@ -43,7 +43,7 @@ const AppStoreBadges = () => {
             }}
           />
         </a>
-      }
+      */}
     </div>
   );
 };

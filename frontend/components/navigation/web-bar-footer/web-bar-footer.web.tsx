@@ -1,6 +1,6 @@
 import { AppStoreBadges } from '../../badges/app-store/app-store';
-const twitterIcon = require('../../../assets/social/twitter-white.svg');
-const redditIcon = require('../../../assets/social/reddit-white.svg');
+//const twitterIcon = require('../../../assets/social/twitter-white.svg');
+//const redditIcon = require('../../../assets/social/reddit-white.svg');
 const githubIcon = require('../../../assets/social/github-white.svg');
 
 const SocialBadges = () => {
@@ -20,18 +20,19 @@ const SocialBadges = () => {
         marginBottom: 8,
       }}
     >
-      <li>
+      {/*<li>
         <a target="_blank" href="https://twitter.com/duoliciousapp">
           <img src={twitterIcon.uri} style={{ height: '20px' }} />
         </a>
-      </li>
-      <li>
+      </li>*/}
+      {/*<li>
         <a target="_blank" href="https://www.reddit.com/r/duolicious">
           <img src={redditIcon.uri} style={{ height: '20px' }} />
         </a>
-      </li>
+      </li>*/}
       <li>
-        <a target="_blank" href="https://github.com/duolicious/duolicious">
+        {/* TODO: don't use github logo for codeberg link */}
+        <a target="_blank" href="https://codeberg.org/water-catholic-dating-app/water">
           <img src={githubIcon.uri} style={{ height: '20px' }} />
         </a>
       </li>
