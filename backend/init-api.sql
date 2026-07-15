@@ -155,12 +155,6 @@ CREATE TABLE IF NOT EXISTS gender (
     UNIQUE (name)
 );
 
-CREATE TABLE IF NOT EXISTS orientation (
-    id SMALLSERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    UNIQUE (name)
-);
-
 CREATE TABLE IF NOT EXISTS ethnicity (
     id SMALLSERIAL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -284,7 +278,6 @@ CREATE TABLE IF NOT EXISTS person (
     verification_required BOOLEAN NOT NULL DEFAULT FALSE,
 
     -- Basics
-    orientation_id SMALLINT REFERENCES orientation(id) NOT NULL DEFAULT 1,
     ethnicity_id SMALLINT REFERENCES ethnicity(id) NOT NULL DEFAULT 1,
     occupation TEXT,
     education TEXT,
@@ -667,12 +660,6 @@ CREATE TABLE IF NOT EXISTS search_preference_gender (
     PRIMARY KEY (person_id, gender_id)
 );
 
-CREATE TABLE IF NOT EXISTS search_preference_orientation (
-    person_id INT REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    orientation_id SMALLINT REFERENCES orientation(id) ON DELETE CASCADE,
-    PRIMARY KEY (person_id, orientation_id)
-);
-
 CREATE TABLE IF NOT EXISTS search_preference_ethnicity (
     person_id INT REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
     ethnicity_id SMALLINT REFERENCES ethnicity(id) ON DELETE CASCADE,
@@ -982,18 +969,6 @@ INSERT INTO gender (name) VALUES ('Transgender') ON CONFLICT (name) DO NOTHING;
 INSERT INTO gender (name) VALUES ('Trans woman') ON CONFLICT (name) DO NOTHING;
 INSERT INTO gender (name) VALUES ('Trans man') ON CONFLICT (name) DO NOTHING;
 INSERT INTO gender (name) VALUES ('Other') ON CONFLICT (name) DO NOTHING;
-
-SELECT setval('orientation_id_seq', (SELECT COALESCE(MAX(id), 0) + 1 FROM orientation), FALSE);
-INSERT INTO orientation (name) VALUES ('Unanswered') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Straight') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Gay') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Lesbian') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Bisexual') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Asexual') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Demisexual') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Pansexual') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Queer') ON CONFLICT (name) DO NOTHING;
-INSERT INTO orientation (name) VALUES ('Other') ON CONFLICT (name) DO NOTHING;
 
 SELECT setval('ethnicity_id_seq', (SELECT COALESCE(MAX(id), 0) + 1 FROM ethnicity), FALSE);
 INSERT INTO ethnicity (name) VALUES ('Unanswered') ON CONFLICT (name) DO NOTHING;
