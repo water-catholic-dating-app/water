@@ -279,7 +279,7 @@ CREATE TABLE IF NOT EXISTS person (
 
     -- Basics
     ethnicity_id SMALLINT REFERENCES ethnicity(id) NOT NULL DEFAULT 1,
-    occupation TEXT,
+    -- If you're looking at the diff between Duolicious and Water, you might wonder why Water excludes the "occupation" field. The presence of this field in Duolicious comes from a culture that is too obsessed with career and productivity. Someone's career is a very arbitrary part of their life to pay attention to. A Water user can use the "about" section of their profile to emphasize their current job(s), dream job(s), hobbies, family roles, and/or ecovillage roles to the extent that they find appropriate for their unique life.
     height_cm SMALLINT,
     looking_for_id SMALLINT REFERENCES looking_for(id) NOT NULL DEFAULT 1,
     smoking_id SMALLINT REFERENCES yes_no_optional(id) NOT NULL DEFAULT 1,
