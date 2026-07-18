@@ -164,7 +164,6 @@ test_get_search_filter_questions
 test_set_search_filter_question
 
 test_set gender '["Other", "Trans man"]' true
-test_set orientation '["Other", "Pansexual", "Unanswered"]' true
 test_set ethnicity '["East Asian", "South Asian", "Southeast Asian"]' true
 test_set age '{ "min_age": 42, "max_age": 56 }'
 test_set furthest_distance 50

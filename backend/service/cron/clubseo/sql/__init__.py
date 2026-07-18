@@ -63,7 +63,6 @@ WITH target AS MATERIALIZED (
     SELECT
         s.club_name,
         p.gender_id,
-        p.orientation_id,
         p.ethnicity_id,
         p.religion_id,
         p.drinking_id,
@@ -86,10 +85,6 @@ WITH target AS MATERIALIZED (
 ), gender_j AS MATERIALIZED (
     SELECT club_name, COALESCE(json_agg(json_build_object('label', name, 'count', cnt) ORDER BY cnt DESC), '[]'::json) AS j
     FROM (SELECT m.club_name, g.name, COUNT(*)::int AS cnt FROM members m JOIN gender g ON g.id = m.gender_id GROUP BY m.club_name, g.name HAVING COUNT(*) >= {MIN_CLUB_CELL_SIZE}) x
-    GROUP BY club_name
-), orientation_j AS MATERIALIZED (
-    SELECT club_name, COALESCE(json_agg(json_build_object('label', name, 'count', cnt) ORDER BY cnt DESC), '[]'::json) AS j
-    FROM (SELECT m.club_name, o.name, COUNT(*)::int AS cnt FROM members m JOIN orientation o ON o.id = m.orientation_id WHERE m.orientation_id <> 1 GROUP BY m.club_name, o.name HAVING COUNT(*) >= {MIN_CLUB_CELL_SIZE}) x
     GROUP BY club_name
 ), ethnicity_j AS MATERIALIZED (
     SELECT club_name, COALESCE(json_agg(json_build_object('label', name, 'count', cnt) ORDER BY cnt DESC), '[]'::json) AS j
@@ -188,7 +183,6 @@ WITH target AS MATERIALIZED (
             'median_age',   maj.median_age,
             'demographics', json_build_object(
                 'gender',              COALESCE(gj.j,  '[]'::json),
-                'orientation',         COALESCE(oj.j,  '[]'::json),
                 'ethnicity',           COALESCE(ej.j,  '[]'::json),
                 'religion',            COALESCE(rj.j,  '[]'::json),
                 'relationship_status', COALESCE(rsj.j, '[]'::json),
@@ -206,7 +200,6 @@ WITH target AS MATERIALIZED (
         ) AS j
     FROM target t
     LEFT JOIN gender_j              gj  ON gj.club_name  = t.name
-    LEFT JOIN orientation_j         oj  ON oj.club_name  = t.name
     LEFT JOIN ethnicity_j           ej  ON ej.club_name  = t.name
     LEFT JOIN religion_j            rj  ON rj.club_name  = t.name
     LEFT JOIN relationship_status_j rsj ON rsj.club_name = t.name

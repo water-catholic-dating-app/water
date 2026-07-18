@@ -99,7 +99,6 @@
         "wants_kids_id": 1,
         "ethnicity_name": "Unanswered",
         "looking_for_id": 1,
-        "orientation_id": 1,
         "presence_score": [
           0,
           0,
@@ -165,7 +164,6 @@
         "long_distance_id": 1,
         "looking_for_name": "Unanswered",
         "normalized_email": "user1@example.com",
-        "orientation_name": null,
         "show_my_location": true,
         "chats_notification": 1,
         "long_distance_name": "Unanswered",
@@ -247,18 +245,6 @@
       "Trans man",
       "Trans woman",
       "Woman"
-    ],
-    "orientation": [
-      "Asexual",
-      "Bisexual",
-      "Demisexual",
-      "Gay",
-      "Lesbian",
-      "Other",
-      "Pansexual",
-      "Queer",
-      "Straight",
-      "Unanswered"
     ],
     "ethnicity": [
       "Black/African Descent",

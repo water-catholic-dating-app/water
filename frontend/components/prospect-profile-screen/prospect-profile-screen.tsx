@@ -773,7 +773,6 @@ type UserData = {
   show_my_looking_for: string | null,
   occupation: string | null,
   education: string | null,
-  orientation: string | null,
   relationship_status: string | null,
   religion: string | null,
   smoking: string | null,
@@ -862,7 +861,6 @@ const hasAnyBasics = (data: UserData | null | undefined): boolean => {
   }
 
   return Boolean(
-    data.orientation ||
     data.ethnicity ||
     data.relationship_status ||
     data.occupation ||
@@ -1515,9 +1513,6 @@ const Body = ({
         {hasAnyBasics(data) && <>
         <Title style={{color: data?.theme?.title_color}}>Basics</Title>
         <Basics>
-          {data?.orientation &&
-            <Basic {...basicsTheme} icon="person">{data.orientation}</Basic>}
-
           {data?.ethnicity &&
             <Basic {...basicsTheme} icon="globe-outline">{data.ethnicity}</Basic>}
 

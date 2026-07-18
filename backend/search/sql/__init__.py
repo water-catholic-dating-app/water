@@ -307,10 +307,6 @@ WITH searcher AS (
         -- membership tests instead of re-probing each preference table once
         -- per prospect.
         ARRAY(
-            SELECT orientation_id FROM search_preference_orientation
-            WHERE person_id = %(searcher_person_id)s
-        ) AS orientation_preference,
-        ARRAY(
             SELECT ethnicity_id FROM search_preference_ethnicity
             WHERE person_id = %(searcher_person_id)s
         ) AS ethnicity_preference,
@@ -525,8 +521,6 @@ WITH searcher AS (
             WHERE
                 person_id = %(searcher_person_id)s
         )::DATE
-    AND
-        prospect.orientation_id = ANY(searcher.orientation_preference)
     AND
         prospect.ethnicity_id = ANY(searcher.ethnicity_preference)
     AND

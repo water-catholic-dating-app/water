@@ -431,7 +431,6 @@ test_clear_rejected () {
 
 test_clear () {
   # Lookup-table basics clear to "Unanswered".
-  test_set orientation Asexual            && test_clear_field orientation Unanswered
   test_set ethnicity 'Pacific Islander'   && test_clear_field ethnicity Unanswered
   test_set looking_for 'Short-term dating' && test_clear_field looking_for Unanswered
   test_set smoking Yes                    && test_clear_field smoking Unanswered
@@ -461,7 +460,6 @@ test_set name "Jeff" false && exit 1
 test_set name "Jeff" true
 test_set about "I'm a bad ass motherfuckin' DJ / This is why I walk and talk this way"
 test_set gender Woman
-test_set orientation Asexual
 test_set ethnicity 'Pacific Islander'
 test_set location "New York, New York, United States"
 test_set occupation 'Wallnut milker'

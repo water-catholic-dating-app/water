@@ -539,10 +539,6 @@ WITH onboardee_location AS (
     FROM onboardee_search_preference_gender
     JOIN new_person
     ON new_person.email = onboardee_search_preference_gender.email
-), p2 AS (
-    INSERT INTO search_preference_orientation (person_id, orientation_id)
-    SELECT new_person.id, orientation.id
-    FROM new_person, orientation
 ), p3 AS (
     INSERT INTO search_preference_age (person_id, min_age, max_age)
     SELECT new_person.id, min_age, max_age
@@ -821,10 +817,6 @@ WITH prospect_base AS (
     SELECT gender.name AS j
     FROM gender JOIN prospect ON gender_id = gender.id
     WHERE gender.name != 'Unanswered'
-), orientation AS (
-    SELECT orientation.name AS j
-    FROM orientation JOIN prospect ON orientation_id = orientation.id
-    WHERE orientation.name != 'Unanswered'
 ), ethnicity AS (
     SELECT ethnicity.name AS j
     FROM ethnicity JOIN prospect ON ethnicity_id = ethnicity.id
@@ -977,7 +969,6 @@ SELECT
         'education',              (SELECT education     FROM prospect),
         'height_cm',              (SELECT height_cm     FROM prospect),
         'gender',                 (SELECT j             FROM gender),
-        'orientation',            (SELECT j             FROM orientation),
         'ethnicity',              (SELECT j             FROM ethnicity),
         'looking_for',            (SELECT j             FROM looking_for),
         'smoking',                (SELECT j             FROM smoking),
@@ -1371,10 +1362,6 @@ WITH photo_ AS (
     SELECT gender.name AS j
     FROM gender JOIN person ON gender_id = gender.id
     WHERE person.id = %(person_id)s
-), orientation AS (
-    SELECT orientation.name AS j
-    FROM orientation JOIN person ON orientation_id = orientation.id
-    WHERE person.id = %(person_id)s
 ), ethnicity AS (
     SELECT ethnicity.name AS j
     FROM ethnicity JOIN person ON ethnicity_id = ethnicity.id
@@ -1528,7 +1515,6 @@ SELECT
         'url_slug',               (SELECT j FROM url_slug),
         'about',                  (SELECT j FROM about),
         'gender',                 (SELECT j FROM gender),
-        'orientation',            (SELECT j FROM orientation),
         'ethnicity',              (SELECT j FROM ethnicity),
         'location',               (SELECT j FROM location),
         'occupation',             (SELECT j FROM occupation),
@@ -1672,11 +1658,6 @@ WITH answer AS (
     FROM search_preference_gender JOIN gender
     ON gender_id = gender.id
     WHERE person_id = %(person_id)s
-), orientation AS (
-    SELECT COALESCE(array_agg(name ORDER BY name), ARRAY[]::TEXT[]) AS j
-    FROM search_preference_orientation JOIN orientation
-    ON orientation_id = orientation.id
-    WHERE person_id = %(person_id)s
 ), ethnicity AS (
     SELECT COALESCE(array_agg(name ORDER BY name), ARRAY[]::TEXT[]) AS j
     FROM search_preference_ethnicity JOIN ethnicity
@@ -1776,7 +1757,6 @@ SELECT
         'answer',                 (SELECT j FROM answer),
 
         'gender',                 (SELECT j FROM gender),
-        'orientation',            (SELECT j FROM orientation),
         'ethnicity',              (SELECT j FROM ethnicity),
         'age',                    (SELECT j FROM age),
         'furthest_distance',      (SELECT j FROM furthest_distance),
@@ -2409,7 +2389,6 @@ SELECT json_build_object(
                 gender.name AS gender_name,
                 has_profile_picture.name AS has_profile_picture_name,
                 verification_level.name AS verification_level_name,
-                orientation.name AS orientation_name,
                 ethnicity.name AS ethnicity_name,
                 looking_for.name AS looking_for_name,
                 smoking.name AS smoking_name,
@@ -2438,9 +2417,6 @@ SELECT json_build_object(
             LEFT JOIN
                 verification_level ON
                 verification_level.id = verification_level_id
-            LEFT JOIN
-                orientation ON
-                orientation.id = person.id
             LEFT JOIN
                 ethnicity ON
                 ethnicity.id = ethnicity_id

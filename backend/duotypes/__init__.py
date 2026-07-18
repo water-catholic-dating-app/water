@@ -43,7 +43,6 @@ register_heif_opener()
 CLUB_PATTERN = r"""^[a-zA-Z0-9/#'":_-]+( [a-zA-Z0-9/#'":_-]+)*$"""
 CLUB_MAX_LEN = 42
 PATCH_PROFILE_INFO_LOOKUP_BASICS = frozenset({
-    'orientation',
     'ethnicity',
     'looking_for',
     'smoking',
@@ -524,7 +523,6 @@ class PatchProfileInfo(BaseModel):
         max_length=MAX_ABOUT_LEN,
     )
     gender: str | None = None
-    orientation: str | None = None
     ethnicity: str | None = None
     location: str | None = None
     occupation: str | None = Field(default=None, min_length=1, max_length=64)
@@ -613,7 +611,6 @@ class PostSearchFilter(BaseModel):
         max_height_cm: int | None
 
     gender: List[str] | None = Field(default=None, min_length=1)
-    orientation: List[str] | None = Field(default=None, min_length=1)
     ethnicity: List[str] | None = Field(default=None, min_length=1)
     age: Age | None = None
     furthest_distance: int | None = None

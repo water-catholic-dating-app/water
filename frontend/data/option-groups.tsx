@@ -351,18 +351,6 @@ const genders = [
   'Other',
 ];
 
-const orientations = [
-  'Straight',
-  'Gay',
-  'Lesbian',
-  'Bisexual',
-  'Asexual',
-  'Demisexual',
-  'Pansexual',
-  'Queer',
-  'Other',
-];
-
 const ethnicities = [
   'Black/African Descent',
   'East Asian',
@@ -681,23 +669,6 @@ const locationOptionGroup: OptionGroup<OptionGroupLocationSelector> = {
   scrollView: false,
 };
 
-const orientationOptionGroup: OptionGroup<OptionGroupButtons> = {
-  title: 'Orientation',
-  Icon: ({ color = 'black' }) => <Ionicons style={{fontSize: 16, color}} name="person" />,
-  description: "What’s your sexual orientation?",
-  input: {
-    buttons: {
-      values: orientations,
-      submit: async (orientation: string) => {
-        const ok = (await japi('patch', '/profile-info', { orientation })).ok;
-        if (ok) patchProfileInfo({ orientation });
-        return ok;
-      },
-      clear: clearProfileField('orientation', 'Unanswered'),
-    }
-  },
-};
-
 const lookingForOptionGroup: OptionGroup<OptionGroupButtons> = {
   title: 'Looking For',
   Icon: ({ color = 'black' }) => <Ionicons style={{fontSize: 16, color}} name="eye" />,
@@ -718,7 +689,6 @@ const lookingForOptionGroup: OptionGroup<OptionGroupButtons> = {
 const basicsOptionGroups: OptionGroup<OptionGroupInputs>[] = [
   genderOptionGroup,
   locationOptionGroup,
-  orientationOptionGroup,
   ethnicityOptionGroup,
   {
     title: 'Occupation',
@@ -1422,33 +1392,6 @@ const searchBasicsOptionGroups: OptionGroup<OptionGroupInputs>[] = [
           searchQueue.addTask(go);
           patchSearchFilters({ age });
           return true;
-        },
-      }
-    },
-  },
-  {
-    title: "Orientation",
-    Icon: ({ color = 'black' }) => <Ionicons style={{fontSize: 16, color}} name="person" />,
-    description: "Which orientations would you like to see in search results?",
-    input: {
-      checkChips: {
-        values: [
-          ...orientations.map((x) => ({checked: true, label: x})),
-          {checked: true, label: 'Unanswered'},
-        ],
-        submit: async (orientation: string[]) => {
-          const go = async () => {
-            const ok = (await japi('post', '/search-filter', { orientation })).ok;
-            if (ok) patchSearchFilters({ orientation });
-            return ok;
-          };
-          if (orientation.length) {
-            searchQueue.addTask(go);
-            patchSearchFilters({ orientation });
-            return true;
-          } else {
-            return await searchQueue.addTask(go);
-          }
         },
       }
     },

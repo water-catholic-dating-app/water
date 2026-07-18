@@ -119,10 +119,6 @@ WITH viewer AS (
             WHERE person_id = person.id
         ) AS gender_preference,
         ARRAY(
-            SELECT orientation_id FROM search_preference_orientation
-            WHERE person_id = person.id
-        ) AS orientation_preference,
-        ARRAY(
             SELECT ethnicity_id FROM search_preference_ethnicity
             WHERE person_id = person.id
         ) AS ethnicity_preference,
@@ -349,8 +345,6 @@ SELECT
                         prospect.date_of_birth <= prefs.max_date_of_birth_preference
                     AND
                         prospect.date_of_birth > prefs.min_date_of_birth_preference
-                    AND
-                        prospect.orientation_id = ANY(prefs.orientation_preference)
                     AND
                         prospect.ethnicity_id = ANY(prefs.ethnicity_preference)
                     AND
