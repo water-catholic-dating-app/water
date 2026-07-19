@@ -216,7 +216,6 @@ def build_prompt_payload(stats: Mapping[str, object]) -> dict[str, object]:
         'member_count':     stats.get('member_count'),
         'median_age':       stats.get('median_age'),
         'gender_mix':       _top_pct(mapping_sequence_or_empty(demo.get('gender'))),
-        'religion_mix':     _top_pct(mapping_sequence_or_empty(demo.get('religion'))),
         'personality_lean': _notable_traits(
             mapping_sequence_or_empty(stats.get('personality'))),
         'shared_answers':   sequence_or_empty(
@@ -254,7 +253,7 @@ JSON fields:
 - club_name: the club's name (a label)
 - member_count: number of active members
 - median_age: median member age, or null
-- gender_mix / religion_mix: [{label, pct}] proportions
+- gender_mix: [{label, pct}] proportions
 - personality_lean: [{trait, min_label, max_label, score}]; score runs
   100..100, positive leans toward max_label, negative toward min_label
 - shared_answers: [{question, club_agree_pct, platform_agree_pct}],

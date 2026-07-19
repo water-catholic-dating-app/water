@@ -64,7 +64,6 @@ club_page_is_precomputed_and_served () {
   [[ "$(jq -r '.demographics.age_buckets[0].count' <<< "$result")" == "51" ]]
 
   # Empty categories are empty arrays, not null.
-  [[ "$(jq -r '.demographics.religion | type' <<< "$result")" == "array" ]]
   [[ "$(jq -r '.personality   | type'        <<< "$result")" == "array" ]]
   [[ "$(jq -r '.related_clubs | type'        <<< "$result")" == "array" ]]
 }

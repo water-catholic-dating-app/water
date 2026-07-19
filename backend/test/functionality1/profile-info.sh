@@ -441,7 +441,6 @@ test_clear () {
   test_set has_kids No                    && test_clear_field has_kids Unanswered
   test_set wants_kids Yes                 && test_clear_field wants_kids Unanswered
   test_set exercise Often                 && test_clear_field exercise Unanswered
-  test_set religion Zoroastrian           && test_clear_field religion Unanswered
   test_set star_sign Sagittarius          && test_clear_field star_sign Unanswered
 
   # Free-text/numeric basics clear to null.
@@ -474,7 +473,6 @@ test_set relationship_status Single
 test_set has_kids No
 test_set wants_kids Yes
 test_set exercise Often
-test_set religion Zoroastrian
 test_set star_sign Sagittarius
 test_set units Imperial
 test_set chats 'Every 3 days'

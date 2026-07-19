@@ -774,7 +774,6 @@ type UserData = {
   occupation: string | null,
   education: string | null,
   relationship_status: string | null,
-  religion: string | null,
   smoking: string | null,
   star_sign: string | null,
   wants_kids: string | null,
@@ -870,7 +869,6 @@ const hasAnyBasics = (data: UserData | null | undefined): boolean => {
     data.smoking ||
     data.drinking ||
     data.drugs ||
-    data.religion ||
     data.star_sign ||
     data.exercise ||
     data.height_cm
@@ -1549,9 +1547,6 @@ const Body = ({
             <Basic {...basicsTheme} icon={faPills}>Does drugs</Basic>}
           {data?.drugs === 'No' &&
             <Basic {...basicsTheme} icon={faPills}>Doesn’t do drugs</Basic>}
-
-          {data?.religion &&
-            <Basic {...basicsTheme} icon={faHandsPraying}>{data.religion}</Basic>}
 
           {data?.star_sign &&
             <Basic {...basicsTheme} icon="star">{data.star_sign}</Basic>}

@@ -64,7 +64,6 @@ WITH target AS MATERIALIZED (
         s.club_name,
         p.gender_id,
         p.ethnicity_id,
-        p.religion_id,
         p.drinking_id,
         p.smoking_id,
         p.drugs_id,
@@ -89,10 +88,6 @@ WITH target AS MATERIALIZED (
 ), ethnicity_j AS MATERIALIZED (
     SELECT club_name, COALESCE(json_agg(json_build_object('label', name, 'count', cnt) ORDER BY cnt DESC), '[]'::json) AS j
     FROM (SELECT m.club_name, e.name, COUNT(*)::int AS cnt FROM members m JOIN ethnicity e ON e.id = m.ethnicity_id WHERE m.ethnicity_id <> 1 GROUP BY m.club_name, e.name HAVING COUNT(*) >= {MIN_CLUB_CELL_SIZE}) x
-    GROUP BY club_name
-), religion_j AS MATERIALIZED (
-    SELECT club_name, COALESCE(json_agg(json_build_object('label', name, 'count', cnt) ORDER BY cnt DESC), '[]'::json) AS j
-    FROM (SELECT m.club_name, r.name, COUNT(*)::int AS cnt FROM members m JOIN religion r ON r.id = m.religion_id WHERE m.religion_id <> 1 GROUP BY m.club_name, r.name HAVING COUNT(*) >= {MIN_CLUB_CELL_SIZE}) x
     GROUP BY club_name
 ), relationship_status_j AS MATERIALIZED (
     SELECT club_name, COALESCE(json_agg(json_build_object('label', name, 'count', cnt) ORDER BY cnt DESC), '[]'::json) AS j
@@ -184,7 +179,6 @@ WITH target AS MATERIALIZED (
             'demographics', json_build_object(
                 'gender',              COALESCE(gj.j,  '[]'::json),
                 'ethnicity',           COALESCE(ej.j,  '[]'::json),
-                'religion',            COALESCE(rj.j,  '[]'::json),
                 'relationship_status', COALESCE(rsj.j, '[]'::json),
                 'age_buckets',         COALESCE(abj.j, '[]'::json)
             ),
@@ -201,7 +195,6 @@ WITH target AS MATERIALIZED (
     FROM target t
     LEFT JOIN gender_j              gj  ON gj.club_name  = t.name
     LEFT JOIN ethnicity_j           ej  ON ej.club_name  = t.name
-    LEFT JOIN religion_j            rj  ON rj.club_name  = t.name
     LEFT JOIN relationship_status_j rsj ON rsj.club_name = t.name
     LEFT JOIN age_buckets_j         abj ON abj.club_name = t.name
     LEFT JOIN drinking_j            dj  ON dj.club_name  = t.name

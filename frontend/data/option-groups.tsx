@@ -364,18 +364,6 @@ const ethnicities = [
   'Other'
 ];
 
-const religions = [
-  'Agnostic',
-  'Atheist',
-  'Buddhist',
-  'Christian',
-  'Hindu',
-  'Jewish',
-  'Muslim',
-  'Zoroastrian',
-  'Other',
-];
-
 const starSigns = [
   'Aquarius',
   'Aries',
@@ -900,28 +888,6 @@ const basicsOptionGroups: OptionGroup<OptionGroupInputs>[] = [
           return ok;
         },
         clear: clearProfileField('exercise', 'Unanswered'),
-      }
-    },
-  },
-  {
-    title: 'Religion',
-    Icon: ({ color = 'black' }) => (
-      <FontAwesomeIcon
-        icon={faHandsPraying}
-        size={14}
-        style={{ color }}
-      />
-    ),
-    description: "What’s your religion?",
-    input: {
-      buttons: {
-        values: religions,
-        submit: async (religion: string) => {
-          const ok = (await japi('patch', '/profile-info', { religion })).ok;
-          if (ok) patchProfileInfo({ religion });
-          return ok;
-        },
-        clear: clearProfileField('religion', 'Unanswered'),
       }
     },
   },
@@ -1785,43 +1751,6 @@ const searchBasicsOptionGroups: OptionGroup<OptionGroupInputs>[] = [
           if (exercise.length) {
             searchQueue.addTask(go);
             patchSearchFilters({ exercise });
-            return true;
-          } else {
-            return await searchQueue.addTask(go);
-          }
-        }
-      }
-    },
-  },
-  {
-    title: "Religion",
-    Icon: ({ color = 'black' }) => (
-      <FontAwesomeIcon
-        icon={faHandsPraying}
-        size={14}
-        style={{ color }}
-      />
-    ),
-    description: "Which religions do you want to see in search results?",
-    input: {
-      checkChips: {
-      values: [
-          ...religions.map((x) => ({checked: true, label: x})),
-          {checked: true, label: 'Unanswered'},
-        ],
-        submit: async (religion: string[]) => {
-          const go = async () => {
-            const ok = (await japi(
-              'post',
-              '/search-filter',
-              { religion }
-            )).ok;
-            if (ok) patchSearchFilters({ religion });
-            return ok;
-          };
-          if (religion.length) {
-            searchQueue.addTask(go);
-            patchSearchFilters({ religion });
             return true;
           } else {
             return await searchQueue.addTask(go);

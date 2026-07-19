@@ -179,7 +179,6 @@ test_set relationship_status '["Engaged", "Other", "Unanswered"]' true
 test_set has_kids '["No", "Unanswered"]' true
 test_set wants_kids '["Maybe", "No", "Unanswered"]' true
 test_set exercise '["Never", "Unanswered"]' true
-test_set religion '["Buddhist", "Unanswered"]' true
 test_set star_sign '["Unanswered", "Virgo"]' true
 
 test_set people_you_messaged '"No"'

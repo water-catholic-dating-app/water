@@ -53,7 +53,6 @@ PATCH_PROFILE_INFO_LOOKUP_BASICS = frozenset({
     'has_kids',
     'wants_kids',
     'exercise',
-    'religion',
     'star_sign',
 })
 PATCH_PROFILE_INFO_NULL_BASICS = frozenset({
@@ -537,7 +536,6 @@ class PatchProfileInfo(BaseModel):
     has_kids: str | None = None
     wants_kids: str | None = None
     exercise: str | None = None
-    religion: str | None = None
     star_sign: str | None = None
     units: str | None = None
     chats: str | None = None
@@ -625,7 +623,6 @@ class PostSearchFilter(BaseModel):
     has_kids: List[str] | None = Field(default=None, min_length=1)
     wants_kids: List[str] | None = Field(default=None, min_length=1)
     exercise: List[str] | None = Field(default=None, min_length=1)
-    religion: List[str] | None = Field(default=None, min_length=1)
     star_sign: List[str] | None = Field(default=None, min_length=1)
 
     people_you_messaged: str | None = None

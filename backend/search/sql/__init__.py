@@ -351,10 +351,6 @@ WITH searcher AS (
             WHERE person_id = %(searcher_person_id)s
         ) AS exercise_preference,
         ARRAY(
-            SELECT religion_id FROM search_preference_religion
-            WHERE person_id = %(searcher_person_id)s
-        ) AS religion_preference,
-        ARRAY(
             SELECT star_sign_id FROM search_preference_star_sign
             WHERE person_id = %(searcher_person_id)s
         ) AS star_sign_preference
@@ -567,8 +563,6 @@ WITH searcher AS (
         prospect.wants_kids_id = ANY(searcher.wants_kids_preference)
     AND
         prospect.exercise_id = ANY(searcher.exercise_preference)
-    AND
-        prospect.religion_id = ANY(searcher.religion_preference)
     AND
         prospect.star_sign_id = ANY(searcher.star_sign_preference)
     AND
