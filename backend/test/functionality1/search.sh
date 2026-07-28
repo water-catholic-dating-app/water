@@ -914,7 +914,6 @@ test_basic relationship_status 'Seeing someone'
 test_basic has_kids 'Yes' yes_no_optional
 test_basic wants_kids 'No' yes_no_optional
 test_basic exercise 'Never' frequency
-test_basic star_sign 'Leo'
 
 test_bidirectional_gender_filter
 test_one_way_location_filter

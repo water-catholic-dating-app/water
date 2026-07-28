@@ -36,7 +36,6 @@
         "sign_in_time": "2026-07-09T11:23:52.386578",
         "sign_up_time": "2026-07-09T11:23:52.386578",
         "smoking_name": "Unanswered",
-        "star_sign_id": 1,
         "verified_age": false,
         "absence_score": [
           374,
@@ -146,7 +145,6 @@
           146
         ],
         "public_profile": false,
-        "star_sign_name": "Unanswered",
         "last_event_data": {
           "added_photo_uuid": "5317807b912f9f4f9bbded2e9925db4007026a444699fe7999dd260abc83bb66",
           "added_photo_blurhash": "U2E{hG?[t#~E}]baT0E4%Mv~t0Vs-;ja$fO7",
@@ -324,21 +322,6 @@
       "Often",
       "Sometimes",
       "Unanswered"
-    ],
-    "star_sign": [
-      "Aquarius",
-      "Aries",
-      "Cancer",
-      "Capricorn",
-      "Gemini",
-      "Leo",
-      "Libra",
-      "Pisces",
-      "Sagittarius",
-      "Scorpio",
-      "Taurus",
-      "Unanswered",
-      "Virgo"
     ],
     "people_you_messaged": "Yes",
     "people_you_skipped": "No"

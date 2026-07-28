@@ -90,7 +90,6 @@ expected=$(jq -r . << EOF
   "seconds_since_sign_up": null,
   "show_my_looking_for": "Yes",
   "smoking": null,
-  "star_sign": null,
   "theme": {
     "background_color": "#ffffff",
     "body_color": "#000000",
@@ -182,7 +181,6 @@ expected=$(jq -r . << EOF
   "seconds_since_sign_up": null,
   "show_my_looking_for": "Yes",
   "smoking": null,
-  "star_sign": null,
   "theme": {
     "background_color": "#ffffff",
     "body_color": "#000000",

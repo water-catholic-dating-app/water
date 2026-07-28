@@ -349,11 +349,7 @@ WITH searcher AS (
         ARRAY(
             SELECT exercise_id FROM search_preference_exercise
             WHERE person_id = %(searcher_person_id)s
-        ) AS exercise_preference,
-        ARRAY(
-            SELECT star_sign_id FROM search_preference_star_sign
-            WHERE person_id = %(searcher_person_id)s
-        ) AS star_sign_preference
+        ) AS exercise_preference
     FROM
         person
     WHERE
@@ -563,8 +559,6 @@ WITH searcher AS (
         prospect.wants_kids_id = ANY(searcher.wants_kids_preference)
     AND
         prospect.exercise_id = ANY(searcher.exercise_preference)
-    AND
-        prospect.star_sign_id = ANY(searcher.star_sign_preference)
     AND
         -- The prospect wants to be shown to strangers or isn't a stranger
         (

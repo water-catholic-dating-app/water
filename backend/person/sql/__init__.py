@@ -604,10 +604,6 @@ WITH onboardee_location AS (
     INSERT INTO search_preference_exercise (person_id, exercise_id)
     SELECT new_person.id, frequency.id
     FROM new_person, frequency
-), p17 AS (
-    INSERT INTO search_preference_star_sign (person_id, star_sign_id)
-    SELECT new_person.id, star_sign.id
-    FROM new_person, star_sign
 ), p18 AS (
     INSERT INTO search_preference_messaged (person_id, messaged_id)
     SELECT new_person.id, yes_no.id
@@ -855,10 +851,6 @@ WITH prospect_base AS (
     SELECT frequency.name AS j
     FROM frequency JOIN prospect ON exercise_id = frequency.id
     WHERE frequency.name != 'Unanswered'
-), star_sign AS (
-    SELECT star_sign.name AS j
-    FROM star_sign JOIN prospect ON star_sign_id = star_sign.id
-    WHERE star_sign.name != 'Unanswered'
 ), pref_gender AS (
     SELECT COALESCE(array_agg(g.name ORDER BY g.id), ARRAY[]::TEXT[]) AS j
     FROM search_preference_gender JOIN public.gender AS g
@@ -971,7 +963,6 @@ SELECT
         'has_kids',               (SELECT j             FROM has_kids),
         'wants_kids',             (SELECT j             FROM wants_kids),
         'exercise',               (SELECT j             FROM exercise),
-        'star_sign',              (SELECT j             FROM star_sign),
         'gender_preference',      (SELECT j             FROM pref_gender),
         'age_preference',         (SELECT j             FROM pref_age),
         'show_my_looking_for',    (SELECT CASE WHEN show_my_looking_for THEN 'Yes' ELSE 'No' END FROM prospect),
@@ -1403,10 +1394,6 @@ WITH photo_ AS (
     SELECT frequency.name AS j
     FROM frequency JOIN person ON exercise_id = frequency.id
     WHERE person.id = %(person_id)s
-), star_sign AS (
-    SELECT star_sign.name AS j
-    FROM star_sign JOIN person ON star_sign_id = star_sign.id
-    WHERE person.id = %(person_id)s
 
 ), clubs AS (
     SELECT
@@ -1516,7 +1503,6 @@ SELECT
         'has kids',               (SELECT j FROM has_kids),
         'wants kids',             (SELECT j FROM wants_kids),
         'exercise',               (SELECT j FROM exercise),
-        'star sign',              (SELECT j FROM star_sign),
 
         'clubs',                  (SELECT j FROM clubs),
 
@@ -1717,11 +1703,6 @@ WITH answer AS (
     FROM search_preference_exercise JOIN frequency
     ON exercise_id = frequency.id
     WHERE person_id = %(person_id)s
-), star_sign AS (
-    SELECT COALESCE(array_agg(name ORDER BY name), ARRAY[]::TEXT[]) AS j
-    FROM search_preference_star_sign JOIN star_sign
-    ON star_sign_id = star_sign.id
-    WHERE person_id = %(person_id)s
 ), people_you_messaged AS (
     SELECT name AS j
     FROM search_preference_messaged JOIN yes_no
@@ -1752,7 +1733,6 @@ SELECT
         'has_kids',               (SELECT j FROM has_kids),
         'wants_kids',             (SELECT j FROM wants_kids),
         'exercise',               (SELECT j FROM exercise),
-        'star_sign',              (SELECT j FROM star_sign),
 
         'people_you_messaged',    (SELECT j FROM people_you_messaged),
         'people_you_skipped',     (SELECT j FROM people_you_skipped)
@@ -2379,7 +2359,6 @@ SELECT json_build_object(
                 has_kids.name AS has_kids_name,
                 wants_kids.name AS wants_kids_name,
                 exercise.name AS exercise_name,
-                star_sign.name AS star_sign_name,
                 unit.name AS unit_name,
                 chats_notification.name AS chats_notification_name,
                 intros_notification.name AS intros_notification_name,
@@ -2434,9 +2413,6 @@ SELECT json_build_object(
                 frequency AS
                 exercise ON
                 exercise.id = exercise_id
-            LEFT JOIN
-                star_sign ON
-                star_sign.id = star_sign_id
             LEFT JOIN
                 unit ON
                 unit.id = unit_id

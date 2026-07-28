@@ -161,11 +161,7 @@ WITH viewer AS (
         ARRAY(
             SELECT exercise_id FROM search_preference_exercise
             WHERE person_id = person.id
-        ) AS exercise_preference,
-        ARRAY(
-            SELECT star_sign_id FROM search_preference_star_sign
-            WHERE person_id = person.id
-        ) AS star_sign_preference
+        ) AS exercise_preference
     FROM
         person
     WHERE
@@ -371,8 +367,6 @@ SELECT
                         prospect.wants_kids_id = ANY(prefs.wants_kids_preference)
                     AND
                         prospect.exercise_id = ANY(prefs.exercise_preference)
-                    AND
-                        prospect.star_sign_id = ANY(prefs.star_sign_preference)
                     AND
                         -- NOT EXISTS an answer contrary to the viewer's preference...
                         NOT EXISTS (
