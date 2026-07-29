@@ -771,7 +771,6 @@ type UserData = {
   gender_preference: string[] | null,
   age_preference: { min_age: number | null, max_age: number | null } | null,
   show_my_looking_for: string | null,
-  occupation: string | null,
   education: string | null,
   relationship_status: string | null,
   smoking: string | null,
@@ -861,7 +860,6 @@ const hasAnyBasics = (data: UserData | null | undefined): boolean => {
   return Boolean(
     data.ethnicity ||
     data.relationship_status ||
-    data.occupation ||
     data.education ||
     data.has_kids ||
     data.wants_kids ||
@@ -1514,9 +1512,6 @@ const Body = ({
 
           {data?.relationship_status &&
             <Basic {...basicsTheme} icon="heart">{data.relationship_status}</Basic>}
-
-          {data?.occupation &&
-            <Basic {...basicsTheme} icon="briefcase">{data.occupation}</Basic>}
 
           {data?.education &&
             <Basic {...basicsTheme} icon="school">{data.education}</Basic>}

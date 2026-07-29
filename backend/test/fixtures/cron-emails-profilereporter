@@ -28,7 +28,6 @@ Body: <!DOCTYPE html>
     - 172.18.0.1/32
   location: New York, New York, United States
   name: reporterbot
-  occupation: null
   photo_deletion_links: []
   photo_links: []
   role: Reporter
@@ -49,7 +48,6 @@ Body: <!DOCTYPE html>
     - 172.18.0.1/32
   location: New York, New York, United States
   name: user2
-  occupation: null
   photo_deletion_links: []
   photo_links: []
   role: Accused

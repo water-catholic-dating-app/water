@@ -664,22 +664,6 @@ const basicsOptionGroups: OptionGroup<OptionGroupInputs>[] = [
   locationOptionGroup,
   ethnicityOptionGroup,
   {
-    title: 'Occupation',
-    Icon: ({ color = 'black' }) => <Ionicons style={{fontSize: 16, color}} name="briefcase" />,
-    description: "What’s your profession?",
-    input: {
-      textShort: {
-        submit: async (occupation: string) => {
-          const ok = (await japi('patch', '/profile-info', { occupation })).ok;
-          if (ok) patchProfileInfo({ occupation });
-          return ok;
-        },
-        clear: clearProfileField('occupation', null),
-        invalidMsg: 'Try again',
-      }
-    }
-  },
-  {
     title: 'Education',
     Icon: ({ color = 'black' }) => <Ionicons style={{fontSize: 16, color}} name="school" />,
     description: "Where did you study?",

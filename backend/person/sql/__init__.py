@@ -949,7 +949,6 @@ SELECT
         'flair',                     (SELECT computed_flair            FROM flair),
 
         -- Basics
-        'occupation',             (SELECT occupation    FROM prospect),
         'education',              (SELECT education     FROM prospect),
         'height_cm',              (SELECT height_cm     FROM prospect),
         'gender',                 (SELECT j             FROM gender),
@@ -1352,8 +1351,6 @@ WITH photo_ AS (
     SELECT location_long_friendly AS j
     FROM person
     WHERE id = %(person_id)s
-), occupation AS (
-    SELECT occupation AS j FROM person WHERE id = %(person_id)s
 ), education AS (
     SELECT education AS j FROM person WHERE id = %(person_id)s
 ), height AS (
@@ -1491,7 +1488,6 @@ SELECT
         'gender',                 (SELECT j FROM gender),
         'ethnicity',              (SELECT j FROM ethnicity),
         'location',               (SELECT j FROM location),
-        'occupation',             (SELECT j FROM occupation),
         'education',              (SELECT j FROM education),
         'height',                 (SELECT j FROM height),
         'looking for',            (SELECT j FROM looking_for),

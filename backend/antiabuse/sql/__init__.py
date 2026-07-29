@@ -123,7 +123,6 @@ SELECT
     (
         select name from gender where id = gender_id
     ) AS gender,
-    occupation,
     education,
     about,
     ARRAY(

@@ -55,7 +55,6 @@ PATCH_PROFILE_INFO_LOOKUP_BASICS = frozenset({
     'exercise',
 })
 PATCH_PROFILE_INFO_NULL_BASICS = frozenset({
-    'occupation',
     'education',
     'height',
 })
@@ -523,7 +522,6 @@ class PatchProfileInfo(BaseModel):
     gender: str | None = None
     ethnicity: str | None = None
     location: str | None = None
-    occupation: str | None = Field(default=None, min_length=1, max_length=64)
     education: str | None = Field(default=None, min_length=1, max_length=64)
     height: int | None = None
     looking_for: str | None = None
@@ -570,7 +568,7 @@ class PatchProfileInfo(BaseModel):
 
         return values
 
-    # The name/occupation/education rude checks need the async DB, so they run
+    # The name/education rude checks need the async DB, so they run
     # in the handler (person.patch_profile_info), not here. The `about`
     # rude/spam checks below stay: they're pure and don't touch the DB.
 

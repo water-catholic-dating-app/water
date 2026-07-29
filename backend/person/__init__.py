@@ -37,7 +37,6 @@ from antiabuse.antispam.signupemail import (
     normalize_email,
 )
 import antiabuse.antirude.displayname
-import antiabuse.antirude.occupation
 import antiabuse.antirude.education
 import antiabuse.bannedphoto
 from antiabuse import anonymizers
@@ -656,7 +655,6 @@ async def post_check_session_token(s: t.SessionInfo) -> object:
 # it's handled separately in `_reject_rude_or_banned`.
 _RUDE_TEXT_CHECKS: dict[str, Callable[[str], Awaitable[bool]]] = {
     'name': antiabuse.antirude.displayname.is_rude,
-    'occupation': antiabuse.antirude.occupation.is_rude,
     'education': antiabuse.antirude.education.is_rude,
 }
 
@@ -667,7 +665,11 @@ async def _reject_rude_or_banned(field_name: str, req: object) -> None:
     accepting one of these fields must call this.
 
     A field can legitimately be set to null (e.g. clearing occupation), so the
-    check is skipped when its value is None."""
+    check is skipped when its value is None.
+    
+    Note: occupation exists in Duolicious but not in Water, and I haven't
+    confirmed whether or not there is another field that can be used as an
+    example above."""
     value = getattr(req, field_name, None)
     if value is None:
         return
@@ -1389,11 +1391,6 @@ async def patch_profile_info(req: t.PatchProfileInfo, s: t.SessionInfo) -> objec
         FROM location
         WHERE person.id = %(person_id)s
         AND long_friendly = %(field_value)s
-        """
-    elif field_name == 'occupation':
-        q1 = """
-        UPDATE person SET occupation = %(field_value)s
-        WHERE person.id = %(person_id)s
         """
     elif field_name == 'education':
         q1 = """
