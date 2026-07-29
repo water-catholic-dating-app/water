@@ -15,7 +15,6 @@
         "has_gold": true,
         "url_slug": "user1",
         "activated": true,
-        "education": null,
         "gender_id": 10,
         "height_cm": null,
         "unit_name": "Imperial",

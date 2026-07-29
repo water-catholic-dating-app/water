@@ -37,7 +37,6 @@ from antiabuse.antispam.signupemail import (
     normalize_email,
 )
 import antiabuse.antirude.displayname
-import antiabuse.antirude.education
 import antiabuse.bannedphoto
 from antiabuse import anonymizers
 import blurhash
@@ -655,7 +654,6 @@ async def post_check_session_token(s: t.SessionInfo) -> object:
 # it's handled separately in `_reject_rude_or_banned`.
 _RUDE_TEXT_CHECKS: dict[str, Callable[[str], Awaitable[bool]]] = {
     'name': antiabuse.antirude.displayname.is_rude,
-    'education': antiabuse.antirude.education.is_rude,
 }
 
 
@@ -1391,11 +1389,6 @@ async def patch_profile_info(req: t.PatchProfileInfo, s: t.SessionInfo) -> objec
         FROM location
         WHERE person.id = %(person_id)s
         AND long_friendly = %(field_value)s
-        """
-    elif field_name == 'education':
-        q1 = """
-        UPDATE person SET education = %(field_value)s
-        WHERE person.id = %(person_id)s
         """
     elif field_name == 'height':
         q1 = """

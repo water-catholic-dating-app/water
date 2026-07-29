@@ -47,7 +47,6 @@ expected=$(jq -r . << EOF
   "count_answers": 0,
   "drinking": null,
   "drugs": null,
-  "education": null,
   "ethnicity": null,
   "exercise": null,
   "flair": [
@@ -137,7 +136,6 @@ expected=$(jq -r . << EOF
   "count_answers": 0,
   "drinking": null,
   "drugs": null,
-  "education": null,
   "ethnicity": null,
   "exercise": null,
   "flair": [

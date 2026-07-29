@@ -95,8 +95,6 @@ profile = [
 
 display_name = list(profile)
 
-education = list(profile)
-
 solitication = [
     'cashapp',
     'finsub',

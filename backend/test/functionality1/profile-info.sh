@@ -443,7 +443,6 @@ test_clear () {
   test_set exercise Often                 && test_clear_field exercise Unanswered
 
   # Free-text/numeric basics clear to null.
-  test_set education MIT                   && test_clear_field education null
   test_set height 184                      && test_clear_field height null
 
   # Gender and location can't be cleared.
@@ -459,7 +458,6 @@ test_set about "I'm a bad ass motherfuckin' DJ / This is why I walk and talk thi
 test_set gender Woman
 test_set ethnicity 'Pacific Islander'
 test_set location "New York, New York, United States"
-test_set education MIT
 test_set height 184
 test_set looking_for 'Short-term dating'
 test_set smoking Yes

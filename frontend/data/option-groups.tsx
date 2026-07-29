@@ -664,22 +664,6 @@ const basicsOptionGroups: OptionGroup<OptionGroupInputs>[] = [
   locationOptionGroup,
   ethnicityOptionGroup,
   {
-    title: 'Education',
-    Icon: ({ color = 'black' }) => <Ionicons style={{fontSize: 16, color}} name="school" />,
-    description: "Where did you study?",
-    input: {
-      textShort: {
-        submit: async (education: string) => {
-          const ok = (await japi('patch', '/profile-info', { education })).ok;
-          if (ok) patchProfileInfo({ education });
-          return ok;
-        },
-        clear: clearProfileField('education', null),
-        invalidMsg: 'Try again',
-      }
-    }
-  },
-  {
     title: 'Height',
     Icon: ({ color = 'black' }) => (
       <FontAwesomeIcon

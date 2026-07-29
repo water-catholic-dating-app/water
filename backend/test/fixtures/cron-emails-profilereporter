@@ -21,7 +21,6 @@ Body: <!DOCTYPE html>
   all_report_reasons: []
   clubs: []
   count_answers: 0
-  education: null
   email_domain: example.com
   gender: Other
   ip_addresses:
@@ -41,7 +40,6 @@ Body: <!DOCTYPE html>
     - &#x27;Automatically lodged report: Child safety&#x27;
   clubs: []
   count_answers: 0
-  education: null
   email_domain: example.com
   gender: Other
   ip_addresses:
