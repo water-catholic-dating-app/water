@@ -9,14 +9,6 @@ import {
 const ALL_GENDERS = [
   'Man',
   'Woman',
-  'Agender',
-  'Femboy',
-  'Intersex',
-  'Non-binary',
-  'Transgender',
-  'Trans woman',
-  'Trans man',
-  'Other',
 ];
 
 // Matches the en-dash used by the formatter, so test expectations stay legible.
@@ -47,19 +39,6 @@ describe('lookingForDescription', () => {
     test('joins two genders with "and"', () => {
       expect(lookingForDescription({ gender_preference: ['Man', 'Woman'] }))
         .toBe('men and women');
-    });
-
-    test('joins three or more genders with commas and a trailing "and"', () => {
-      expect(lookingForDescription({
-        gender_preference: ['Man', 'Woman', 'Femboy'],
-      })).toBe('men, women and femboys');
-    });
-
-    test('uses the special plural phrases for non-binary genders', () => {
-      expect(lookingForDescription({ gender_preference: ['Non-binary'] }))
-        .toBe('non-binary people');
-      expect(lookingForDescription({ gender_preference: ['Trans woman'] }))
-        .toBe('trans women');
     });
 
     test('falls back to a lower-cased label for unknown genders', () => {

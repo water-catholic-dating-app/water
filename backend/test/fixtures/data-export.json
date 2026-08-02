@@ -229,15 +229,7 @@
   "search_filters": {
     "answer": [],
     "gender": [
-      "Agender",
-      "Femboy",
-      "Intersex",
       "Man",
-      "Non-binary",
-      "Other",
-      "Transgender",
-      "Trans man",
-      "Trans woman",
       "Woman"
     ],
     "ethnicity": [

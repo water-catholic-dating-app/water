@@ -16,14 +16,6 @@ type LookingForData = {
 const GENDER_PLURALS: { [key: string]: string } = {
   'Man': 'men',
   'Woman': 'women',
-  'Agender': 'agender people',
-  'Femboy': 'femboys',
-  'Intersex': 'intersex people',
-  'Non-binary': 'non-binary people',
-  'Transgender': 'transgender people',
-  'Trans woman': 'trans women',
-  'Trans man': 'trans men',
-  'Other': 'people of other genders',
 };
 
 const TOTAL_GENDER_COUNT = Object.keys(GENDER_PLURALS).length;

@@ -55,15 +55,7 @@ expected=$(jq -r . << EOF
   "gender": "Other",
   "gender_preference": [
     "Man",
-    "Woman",
-    "Agender",
-    "Femboy",
-    "Intersex",
-    "Non-binary",
-    "Transgender",
-    "Trans woman",
-    "Trans man",
-    "Other"
+    "Woman"
   ],
   "gets_reply_percentage": null,
   "gives_reply_percentage": null,
@@ -144,15 +136,7 @@ expected=$(jq -r . << EOF
   "gender": "Other",
   "gender_preference": [
     "Man",
-    "Woman",
-    "Agender",
-    "Femboy",
-    "Intersex",
-    "Non-binary",
-    "Transgender",
-    "Trans woman",
-    "Trans man",
-    "Other"
+    "Woman"
   ],
   "gets_reply_percentage": null,
   "gives_reply_percentage": null,

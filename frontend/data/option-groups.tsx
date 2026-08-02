@@ -341,14 +341,6 @@ const getCurrentValue = (x: OptionGroupInputs) => {
 const genders = [
   'Man',
   'Woman',
-  'Agender',
-  'Femboy',
-  'Intersex',
-  'Non-binary',
-  'Transgender',
-  'Trans woman',
-  'Trans man',
-  'Other',
 ];
 
 const ethnicities = [

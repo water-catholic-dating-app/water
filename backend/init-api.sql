@@ -920,14 +920,6 @@ INSERT INTO verification_level (name) VALUES ('Photos') ON CONFLICT (name) DO NO
 SELECT setval('gender_id_seq', (SELECT COALESCE(MAX(id), 0) + 1 FROM gender), FALSE);
 INSERT INTO gender (name) VALUES ('Man') ON CONFLICT (name) DO NOTHING;
 INSERT INTO gender (name) VALUES ('Woman') ON CONFLICT (name) DO NOTHING;
-INSERT INTO gender (name) VALUES ('Agender') ON CONFLICT (name) DO NOTHING;
-INSERT INTO gender (name) VALUES ('Femboy') ON CONFLICT (name) DO NOTHING;
-INSERT INTO gender (name) VALUES ('Intersex') ON CONFLICT (name) DO NOTHING;
-INSERT INTO gender (name) VALUES ('Non-binary') ON CONFLICT (name) DO NOTHING;
-INSERT INTO gender (name) VALUES ('Transgender') ON CONFLICT (name) DO NOTHING;
-INSERT INTO gender (name) VALUES ('Trans woman') ON CONFLICT (name) DO NOTHING;
-INSERT INTO gender (name) VALUES ('Trans man') ON CONFLICT (name) DO NOTHING;
-INSERT INTO gender (name) VALUES ('Other') ON CONFLICT (name) DO NOTHING;
 
 SELECT setval('ethnicity_id_seq', (SELECT COALESCE(MAX(id), 0) + 1 FROM ethnicity), FALSE);
 INSERT INTO ethnicity (name) VALUES ('Unanswered') ON CONFLICT (name) DO NOTHING;

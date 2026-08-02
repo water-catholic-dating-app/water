@@ -307,7 +307,7 @@ You have been given one or more image(s) by a user attempting to verify their id
   image_1_has_exactly_one_person: number
 
   // Image #1 contains a person whose gender is: Man.
-  // When checking this claim, note that the user chose this gender from these options: Man, Woman, Agender, Femboy, Intersex, Non-binary, Transgender, Trans woman, Trans man, and Other.
+  // When checking this claim, note that the user chose this gender from these options: Man and Woman.
   // In equivocal cases, prefer probabilities near 1.0.
   image_1_has_claimed_gender: number
 
@@ -389,7 +389,7 @@ You have been given one or more image(s) by a user attempting to verify their id
   image_1_has_exactly_one_person: number
 
   // Image #1 contains a person whose gender is: Man.
-  // When checking this claim, note that the user chose this gender from these options: Man, Woman, Agender, Femboy, Intersex, Non-binary, Transgender, Trans woman, Trans man, and Other.
+  // When checking this claim, note that the user chose this gender from these options: Man and Woman.
   // In equivocal cases, prefer probabilities near 1.0.
   image_1_has_claimed_gender: number
 
@@ -501,7 +501,7 @@ You have been given one or more image(s) by a user attempting to verify their id
   image_1_has_exactly_one_person: number
 
   // Image #1 contains a person whose gender is: Woman.
-  // When checking this claim, note that the user chose this gender from these options: Man, Woman, Agender, Femboy, Intersex, Non-binary, Transgender, Trans woman, Trans man, and Other.
+  // When checking this claim, note that the user chose this gender from these options: Man and Woman.
   // In equivocal cases, prefer probabilities near 1.0.
   image_1_has_claimed_gender: number
 
@@ -575,7 +575,7 @@ You have been given one or more image(s) by a user attempting to verify their id
   image_1_has_exactly_one_person: number
 
   // Image #1 contains a person whose gender is: Woman.
-  // When checking this claim, note that the user chose this gender from these options: Man, Woman, Agender, Femboy, Intersex, Non-binary, Transgender, Trans woman, Trans man, and Other.
+  // When checking this claim, note that the user chose this gender from these options: Man and Woman.
   // In equivocal cases, prefer probabilities near 1.0.
   image_1_has_claimed_gender: number
 
