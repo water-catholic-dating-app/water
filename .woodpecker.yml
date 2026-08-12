@@ -1,0 +1,13 @@
+when:
+  - event: pull_request
+  - event: push
+    branch:
+      - main
+
+steps:
+  frontend-eslint:
+    image: ghcr.io/nektos/act:v0.2.89
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - act push -W .github/workflows/frontend-eslint.yml
