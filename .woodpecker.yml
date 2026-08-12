@@ -11,3 +11,4 @@ steps:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - act push -W .github/workflows/frontend-eslint.yml
+      # TODO: run tests
