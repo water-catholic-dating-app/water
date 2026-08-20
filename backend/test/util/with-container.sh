@@ -2,12 +2,6 @@
 
 set -e
 
-# The postgresql-client installation step is a workaround to make .github/workflows/backend-test.yml work in the partial image used by nektos/act.
-#if [ -v ACT ]; then
-#  sudo apt-get update
-#  sudo apt-get install -y postgresql-client
-#fi
-
 docker compose -f docker-compose.test.yml up -d
 docker compose logs -f &
 
