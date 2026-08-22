@@ -42,7 +42,6 @@ ENUM_FILTERS = [
     EnumFilter('wants_kids_ids',          'search_preference_wants_kids',          'wants_kids_id',          'yes_no_maybe'),
     EnumFilter('exercise_ids',            'search_preference_exercise',            'exercise_id',            'frequency'),
     EnumFilter('religion_ids',            'search_preference_religion',            'religion_id',            'religion'),
-    EnumFilter('star_sign_ids',           'search_preference_star_sign',           'star_sign_id',           'star_sign'),
 ]
 
 
@@ -199,7 +198,6 @@ _TWO_WAY_ENUM_COLUMNS = {
     'wants_kids':            'wants_kids_id',
     'exercise':              'exercise_id',
     'religion':              'religion_id',
-    'star_sign':             'star_sign_id',
 }
 
 # Every two-way filter key, ordered to match the Search Filters screen. Only
@@ -222,7 +220,6 @@ TWO_WAY_FILTER_KEYS = [
     'drinking',
     'height',
     'exercise',
-    'star_sign',
 ]
 
 _SEARCHER_ATTR_SELECTS = ',\n'.join(

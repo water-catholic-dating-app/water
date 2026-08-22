@@ -1467,13 +1467,6 @@ async def patch_profile_info(req: t.PatchProfileInfo, s: t.SessionInfo) -> objec
         WHERE person.id = %(person_id)s
         AND religion.name = %(field_value)s
         """
-    elif field_name == 'star_sign':
-        q1 = """
-        UPDATE person SET star_sign_id = star_sign.id
-        FROM star_sign
-        WHERE person.id = %(person_id)s
-        AND star_sign.name = %(field_value)s
-        """
     elif field_name == 'units':
         q1 = """
         UPDATE person SET unit_id = unit.id
@@ -1869,18 +1862,6 @@ async def post_search_filter(req: t.PostSearchFilter, s: t.SessionInfo) -> objec
         )
         SELECT %(person_id)s, id
         FROM religion WHERE name = ANY(%(field_value)s)
-        """
-    elif field_name == 'star_sign':
-        q1 = """
-        DELETE FROM search_preference_star_sign
-        WHERE person_id = %(person_id)s"""
-
-        q2 = """
-        INSERT INTO search_preference_star_sign (
-            person_id, star_sign_id
-        )
-        SELECT %(person_id)s, id
-        FROM star_sign WHERE name = ANY(%(field_value)s)
         """
     elif field_name == 'last_online':
         q1 = None

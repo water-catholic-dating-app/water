@@ -12,7 +12,6 @@ const SPACE_TO_SNAKE: Record<string, string> = {
   'relationship status': 'relationship_status',
   'has kids': 'has_kids',
   'wants kids': 'wants_kids',
-  'star sign': 'star_sign',
   'verification level': 'verification_level',
   'public profile': 'public_profile',
   'show my location': 'show_my_location',
