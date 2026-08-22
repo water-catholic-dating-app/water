@@ -235,12 +235,6 @@ CREATE TABLE IF NOT EXISTS religion (
     UNIQUE (name)
 );
 
-CREATE TABLE IF NOT EXISTS star_sign (
-    id SMALLSERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    UNIQUE (name)
-);
-
 CREATE TABLE IF NOT EXISTS unit (
     id SMALLSERIAL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -312,7 +306,6 @@ CREATE TABLE IF NOT EXISTS person (
     wants_kids_id SMALLINT REFERENCES yes_no_maybe(id) NOT NULL DEFAULT 1,
     exercise_id SMALLINT REFERENCES frequency(id) NOT NULL DEFAULT 1,
     religion_id SMALLINT REFERENCES religion(id) NOT NULL DEFAULT 1,
-    star_sign_id SMALLINT REFERENCES star_sign(id) NOT NULL DEFAULT 1,
 
     -- Theme
     title_color TEXT NOT NULL DEFAULT '#000000',
@@ -800,12 +793,6 @@ CREATE TABLE IF NOT EXISTS search_preference_religion (
     PRIMARY KEY (person_id, religion_id)
 );
 
-CREATE TABLE IF NOT EXISTS search_preference_star_sign (
-    person_id INT NOT NULL REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    star_sign_id SMALLINT REFERENCES star_sign(id) ON DELETE CASCADE,
-    PRIMARY KEY (person_id, star_sign_id)
-);
-
 CREATE TABLE IF NOT EXISTS search_preference_club (
     person_id INT NOT NULL REFERENCES person(id) ON DELETE CASCADE ON UPDATE CASCADE,
     club_name TEXT REFERENCES club(name) ON DELETE CASCADE,
@@ -844,7 +831,6 @@ CREATE TABLE IF NOT EXISTS search_preference_two_way_filters (
     drinking              BOOLEAN NOT NULL DEFAULT FALSE,
     height                BOOLEAN NOT NULL DEFAULT FALSE,
     exercise              BOOLEAN NOT NULL DEFAULT FALSE,
-    star_sign             BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY (person_id)
 );
 
@@ -1123,21 +1109,6 @@ INSERT INTO religion (name) VALUES ('Jewish') ON CONFLICT (name) DO NOTHING;
 INSERT INTO religion (name) VALUES ('Muslim') ON CONFLICT (name) DO NOTHING;
 INSERT INTO religion (name) VALUES ('Zoroastrian') ON CONFLICT (name) DO NOTHING;
 INSERT INTO religion (name) VALUES ('Other') ON CONFLICT (name) DO NOTHING;
-
-SELECT setval('star_sign_id_seq', (SELECT COALESCE(MAX(id), 0) + 1 FROM star_sign), FALSE);
-INSERT INTO star_sign (name) VALUES ('Unanswered') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Aquarius') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Aries') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Cancer') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Capricorn') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Gemini') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Leo') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Libra') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Pisces') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Sagittarius') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Scorpio') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Taurus') ON CONFLICT (name) DO NOTHING;
-INSERT INTO star_sign (name) VALUES ('Virgo') ON CONFLICT (name) DO NOTHING;
 
 SELECT setval('unit_id_seq', (SELECT COALESCE(MAX(id), 0) + 1 FROM unit), FALSE);
 INSERT INTO unit (name) VALUES ('Imperial') ON CONFLICT (name) DO NOTHING;
