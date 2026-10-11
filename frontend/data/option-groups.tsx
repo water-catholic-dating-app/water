@@ -389,21 +389,6 @@ const religions = [
   'Other',
 ];
 
-const starSigns = [
-  'Aquarius',
-  'Aries',
-  'Cancer',
-  'Capricorn',
-  'Gemini',
-  'Leo',
-  'Libra',
-  'Pisces',
-  'Sagittarius',
-  'Scorpio',
-  'Taurus',
-  'Virgo',
-];
-
 const lookingFor = [
   'Friends',
   'Short-term dating',
@@ -937,22 +922,6 @@ const basicsOptionGroups: OptionGroup<OptionGroupInputs>[] = [
           return ok;
         },
         clear: clearProfileField('exercise', 'Unanswered'),
-      }
-    },
-  },
-  {
-    title: 'Star Sign',
-    Icon: ({ color = 'black' }) => <Ionicons style={{fontSize: 16, color}} name="star" />,
-    description: "What’s your star sign?",
-    input: {
-      buttons: {
-        values: starSigns,
-        submit: async (starSign: string) => {
-          const ok = (await japi('patch', '/profile-info', { star_sign: starSign })).ok;
-          if (ok) patchProfileInfo({ star_sign: starSign });
-          return ok;
-        },
-        clear: clearProfileField('star_sign', 'Unanswered'),
       }
     },
   },
@@ -1937,37 +1906,6 @@ const searchOtherBasicsOptionGroups: OptionGroup<OptionGroupInputs>[] = [
           if (exercise.length) {
             searchQueue.addTask(go);
             patchSearchFilters({ exercise });
-            return true;
-          } else {
-            return await searchQueue.addTask(go);
-          }
-        }
-      }
-    },
-  },
-  {
-    title: "Star Sign",
-    Icon: ({ color = 'black' }) => <Ionicons style={{fontSize: 16, color}} name="star" />,
-    description: "What star signs would you like to see in search results?",
-    input: {
-      checkChips: {
-        values: [
-          ...starSigns.map((x) => ({checked: true, label: x})),
-          {checked: true, label: 'Unanswered'},
-        ],
-        submit: async (starSign: string[]) => {
-          const go = async () => {
-            const ok = (await japi(
-              'post',
-              '/search-filter',
-              { star_sign: starSign }
-            )).ok;
-            if (ok) patchSearchFilters({ star_sign: starSign });
-            return ok;
-          };
-          if (starSign.length) {
-            searchQueue.addTask(go);
-            patchSearchFilters({ star_sign: starSign });
             return true;
           } else {
             return await searchQueue.addTask(go);

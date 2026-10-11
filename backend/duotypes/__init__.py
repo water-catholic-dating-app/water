@@ -55,7 +55,6 @@ PATCH_PROFILE_INFO_LOOKUP_BASICS = frozenset({
     'wants_kids',
     'exercise',
     'religion',
-    'star_sign',
 })
 PATCH_PROFILE_INFO_NULL_BASICS = frozenset({
     'occupation',
@@ -540,7 +539,6 @@ class PatchProfileInfo(BaseModel):
     wants_kids: str | None = None
     exercise: str | None = None
     religion: str | None = None
-    star_sign: str | None = None
     units: str | None = None
     chats: str | None = None
     intros: str | None = None
@@ -636,7 +634,6 @@ class PostSearchFilter(BaseModel):
         drinking: bool | None = None
         height: bool | None = None
         exercise: bool | None = None
-        star_sign: bool | None = None
 
     gender: List[str] | None = Field(default=None, min_length=1)
     orientation: List[str] | None = Field(default=None, min_length=1)
@@ -655,7 +652,6 @@ class PostSearchFilter(BaseModel):
     wants_kids: List[str] | None = Field(default=None, min_length=1)
     exercise: List[str] | None = Field(default=None, min_length=1)
     religion: List[str] | None = Field(default=None, min_length=1)
-    star_sign: List[str] | None = Field(default=None, min_length=1)
 
     last_online: str | None = None
 

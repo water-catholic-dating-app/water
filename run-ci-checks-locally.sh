@@ -15,6 +15,10 @@ cd ..
 # docker compose --file backend/docker-compose.test.yml down --volumes --rmi local
 # docker system prune --volumes --force
 
+# Sometimes you will need to run this in the backend dir:
+#
+# ./test/util/with-container.sh ./test/functionality5/data-export.sh update-snapshot
+
 act -W .github/workflows/frontend-eslint.yml
 act -W .github/workflows/frontend-type-checks.yml
 act -W .github/workflows/frontend-playwright.yml --artifact-server-path $PWD/.frontend-playwright-artifacts

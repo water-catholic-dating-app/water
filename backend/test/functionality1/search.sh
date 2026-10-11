@@ -908,17 +908,10 @@ test_two_way_filters_persist () {
 
   [[ "$(c GET /search-filters | jq -r '.two_way_filters.gender')" = true ]]
   [[ "$(c GET /search-filters | jq -r '.two_way_filters.age')" = false ]]
-  [[ "$(c GET /search-filters | jq -r '.two_way_filters.star_sign')" = false ]]
 
   jc POST /search-filter -d '{ "two_way_filters": { "gender": false, "age": true } }'
   [[ "$(c GET /search-filters | jq -r '.two_way_filters.gender')" = false ]]
   [[ "$(c GET /search-filters | jq -r '.two_way_filters.age')" = true ]]
-  [[ "$(c GET /search-filters | jq -r '.two_way_filters.star_sign')" = false ]]
-
-  jc POST /search-filter -d '{ "two_way_filters": { "star_sign": true } }'
-  [[ "$(c GET /search-filters | jq -r '.two_way_filters.gender')" = false ]]
-  [[ "$(c GET /search-filters | jq -r '.two_way_filters.age')" = true ]]
-  [[ "$(c GET /search-filters | jq -r '.two_way_filters.star_sign')" = true ]]
 }
 
 test_search_page_size_limit () {
@@ -1032,7 +1025,6 @@ test_basic has_kids 'Yes' yes_no_optional
 test_basic wants_kids 'No' yes_no_optional
 test_basic exercise 'Never' frequency
 test_basic religion 'Buddhist'
-test_basic star_sign 'Leo'
 
 test_bidirectional_gender_filter
 test_one_way_location_filter
